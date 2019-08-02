@@ -4,6 +4,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="atmApplication"/>
 	<classpathentry kind="src" path="questionaire"/>
+	<classpathentry kind="src" path="DatabaseInsert"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/mysql1"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

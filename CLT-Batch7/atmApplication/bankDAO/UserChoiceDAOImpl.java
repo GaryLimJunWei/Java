@@ -2,14 +2,14 @@ package bankDAO;
 import java.util.Scanner;
 
 import bankServices.MessagePrintServices;
-import controller.Controller;
+import controller.AdminController;
 import pojo.PojoUser;
 
 public class UserChoiceDAOImpl implements UserChoiceDAO 
 {
 	String email,password,color;
 	//When user choice is number 1 this is the method that do the registeration
-	public void choiceOne(PojoUser userRef,Controller refControl,Scanner s) //Registeration Page
+	public void choiceOne(PojoUser userRef,AdminController refControl,Scanner s) //Registeration Page
 	{
 		System.out.println("Enter email address : ");
 		email = s.next();
@@ -75,7 +75,7 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 // ===============================================================================================================
 	
 	//Choice Two is for Login verification 
-	public void choiceTwo(PojoUser userRef, Controller refControl,Scanner s)
+	public void choiceTwo(PojoUser userRef, AdminController refControl,Scanner s)
 	{
 		int value=0;
 		System.out.println("Enter User ID : ");
@@ -112,7 +112,7 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 	// ===============================================================================================================
 	// ===============================================================================================================
 	// Choice Three is when user forget password
-	public void choiceThree(PojoUser userRef,Controller refControl,Scanner s) //Forget Password
+	public void choiceThree(PojoUser userRef,AdminController refControl,Scanner s) //Forget Password
 	{
 
 			System.out.println("Enter Your ID : ");
@@ -169,7 +169,7 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 	//This is the option where user can choose after login
 	
 	
-	public void loginoption(int choice,PojoUser userRef, Scanner s,Controller refControl)
+	public void loginoption(int choice,PojoUser userRef, Scanner s,AdminController refControl)
 	{
 			double temp;
 			switch(choice)

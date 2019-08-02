@@ -1,14 +1,14 @@
 package bankServices;
 
 import java.util.Scanner;
-import controller.Controller;
+import controller.AdminController;
 import pojo.PojoUser;
 
 
 public class MessagePrintServicesImpl implements MessagePrintServices 
 {
 	int choice;
-	public void message(PojoUser userRef,Controller refControl)
+	public void message(PojoUser userRef,AdminController refControl)
 
 	{
 				System.out.println("User Home Page : ");
@@ -21,7 +21,7 @@ public class MessagePrintServicesImpl implements MessagePrintServices
 				
 	}
 	@Override
-	public void message2(PojoUser userRef, Scanner s,Controller refControl) 
+	public void message2(PojoUser userRef, Scanner s,AdminController refControl) 
 	{
 		while(true)
 		{
@@ -50,7 +50,7 @@ public class MessagePrintServicesImpl implements MessagePrintServices
 	
 
 	
-		public void wishToContinue(PojoUser userRef,Scanner s,Controller refControl)
+		public void wishToContinue(PojoUser userRef,Scanner s,AdminController refControl)
 	{
 		String ans;
 		try 
