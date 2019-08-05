@@ -2,14 +2,14 @@ package application;
 
 import java.sql.SQLException;
 
-import controller.AdminController;
+import databaseController.controller;
 
 public class CRUDApplication {
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 		
-		AdminController refControl = new AdminController();
+		controller refControl = new controller();
 		refControl.adminControl();
 		
 		

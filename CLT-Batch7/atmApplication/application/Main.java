@@ -1,14 +1,14 @@
 package application;
 
-import controller.AdminController;
+import controller.Controller;
 
 public class Main // naving conveion
 {
 
 	public static void main(String[] args) 
 	{
-		AdminController refControl = new AdminController();
-		refControl.tryCatch(refControl); //Passing the object reference to minimize the creation of object
+		Controller refControl = new Controller();
+		refControl.adminController(refControl); //Passing the object reference to minimize the creation of object
 		// naving conveion tryCatch
 	}
 

@@ -1,14 +1,15 @@
 package bankServices;
 
 import java.util.Scanner;
-import controller.AdminController;
+
+import controller.Controller;
 import pojo.PojoUser;
 
 
 public class MessagePrintServicesImpl implements MessagePrintServices 
 {
 	int choice;
-	public void message(PojoUser userRef,AdminController refControl)
+	public void message(PojoUser userRef,Controller refControl)
 
 	{
 				System.out.println("User Home Page : ");
@@ -21,7 +22,7 @@ public class MessagePrintServicesImpl implements MessagePrintServices
 				
 	}
 	@Override
-	public void message2(PojoUser userRef, Scanner s,AdminController refControl) 
+	public void message2(PojoUser userRef, Scanner s,Controller refControl) 
 	{
 		while(true)
 		{
@@ -50,7 +51,7 @@ public class MessagePrintServicesImpl implements MessagePrintServices
 	
 
 	
-		public void wishToContinue(PojoUser userRef,Scanner s,AdminController refControl)
+		public void wishToContinue(PojoUser userRef,Scanner s,Controller refControl)
 	{
 		String ans;
 		try 
@@ -65,7 +66,7 @@ public class MessagePrintServicesImpl implements MessagePrintServices
 			else if(ans.equalsIgnoreCase("n"))
 			{
 				System.out.println("Thanks for Banking with Us !!!\n");
-				refControl.tryCatch(refControl);
+				refControl.adminController(refControl);
 			}
 			else
 			{

@@ -1,13 +1,14 @@
 package dataBase;
 
-import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 public class MyConnection {
 
-	public static Connection prepareConnection()throws SQLException,ClassNotFoundException
+	public static Connection prepareConnection()
 	{
+		Connection ref=null;
+		try 
+		{
 		//database URL
 		//3306 is the default port for mysql
 		String connectionURL = "jdbc:mysql://localhost:3306/clt6";
@@ -16,11 +17,21 @@ public class MyConnection {
 		String uname="root";
 		String pw1="root";
 		
-		//Register JDBC Driver
-		Class.forName("com.mysql.jdbc.Driver");
+	
+			
+			//Register JDBC Driver
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			//open a Connection
+			ref = DriverManager.getConnection(connectionURL,uname,pw1);
+			
+			
+		} 
+		catch (Exception e) 
+		{
+			// TODO: handle exception
+		}
 		
-		//open a Connection
-		Connection ref = DriverManager.getConnection(connectionURL,uname,pw1);
 		return ref;
 	}
 	

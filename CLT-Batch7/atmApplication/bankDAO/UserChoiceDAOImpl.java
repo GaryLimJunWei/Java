@@ -1,15 +1,13 @@
 package bankDAO;
 import java.util.Scanner;
-
-import bankServices.MessagePrintServices;
-import controller.AdminController;
+import controller.Controller;
 import pojo.PojoUser;
 
 public class UserChoiceDAOImpl implements UserChoiceDAO 
 {
 	String email,password,color;
 	//When user choice is number 1 this is the method that do the registeration
-	public void choiceOne(PojoUser userRef,AdminController refControl,Scanner s) //Registeration Page
+	public void choiceOne(PojoUser userRef,Controller refControl,Scanner s) //Registeration Page
 	{
 		System.out.println("Enter email address : ");
 		email = s.next();
@@ -66,7 +64,7 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 		System.out.println(" ");
 		System.out.println("Registration Successful!!");
 		System.out.println("\n");
-		refControl.tryCatch(refControl);
+		refControl.adminController(refControl);
 		
 	}
 
@@ -75,7 +73,7 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 // ===============================================================================================================
 	
 	//Choice Two is for Login verification 
-	public void choiceTwo(PojoUser userRef, AdminController refControl,Scanner s)
+	public void choiceTwo(PojoUser userRef, Controller refControl,Scanner s)
 	{
 		int value=0;
 		System.out.println("Enter User ID : ");
@@ -84,7 +82,7 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 		if(!(email.equalsIgnoreCase(userRef.getEmail())))
 		{
 			System.out.println("No such email found, please register!");
-			refControl.tryCatch(refControl);
+			refControl.adminController(refControl);
 		}
 
 			System.out.println("Enter Password : ");
@@ -112,7 +110,7 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 	// ===============================================================================================================
 	// ===============================================================================================================
 	// Choice Three is when user forget password
-	public void choiceThree(PojoUser userRef,AdminController refControl,Scanner s) //Forget Password
+	public void choiceThree(PojoUser userRef,Controller refControl,Scanner s) //Forget Password
 	{
 
 			System.out.println("Enter Your ID : ");
@@ -120,7 +118,7 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 			if(!(userRef.getEmail().equalsIgnoreCase(tempID)))
 			{
 				System.out.println("No such ID found!");
-				refControl.tryCatch(refControl);
+				refControl.adminController(refControl);
 			}
 			
 			System.out.println("Enter your security key :");
@@ -128,7 +126,7 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 			if(!(userRef.getColor().equalsIgnoreCase(tempSecurity)))
 			{
 				System.out.println("Wrong Security Password, please try again !");
-				refControl.tryCatch(refControl);
+				refControl.adminController(refControl);
 			}
 
 			
@@ -140,7 +138,7 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 			if(!(tempNewPass.equals(tempNewPass2)))
 			{
 				System.out.println("Password doesn't match!");
-				refControl.tryCatch(refControl);
+				refControl.adminController(refControl);
 			}
 			
 			System.out.println("What is your favourite colour? ");
@@ -148,7 +146,7 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 			System.out.println(color+" is your security key, in case if you forget your password. ");
 			
 			System.out.println("\n Your password has been reset successfully.");
-			refControl.tryCatch(refControl);
+			refControl.adminController(refControl);
 		}
 		
 		
@@ -169,7 +167,7 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 	//This is the option where user can choose after login
 	
 	
-	public void loginoption(int choice,PojoUser userRef, Scanner s,AdminController refControl)
+	public void loginoption(int choice,PojoUser userRef, Scanner s,Controller refControl)
 	{
 			double temp;
 			switch(choice)

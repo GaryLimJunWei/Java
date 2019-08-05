@@ -1,11 +1,6 @@
 package controller;
 
 import java.util.Scanner;
-
-import bankDAO.UserChoiceDAO;
-import bankDAO.UserChoiceDAOImpl;
-import bankServices.MessagePrintServices;
-import bankServices.MessagePrintServicesImpl;
 import pojo.PojoUser;
 
 
@@ -14,7 +9,7 @@ public class Controller
 	PojoUser userRef = new PojoUser();
 	Scanner s = new Scanner(System.in); //Passing the Scanner Object to lessen the heap memory
 	
-	public void tryCatch(AdminController refControl)
+	public void adminController(Controller refControl)
 	{
 		int choice = 0;
 		while(true) //true means continue forever till there's a break
@@ -38,7 +33,7 @@ public class Controller
 	}
 	
 	
-	public void option(int choice,AdminController refControl)
+	public void option(int choice,Controller refControl)
 	{
 
 			try 
@@ -58,7 +53,7 @@ public class Controller
 				catch (Exception e) 
 			{
 				System.out.println("wrong input!");
-				refControl.tryCatch(refControl);
+				adminController(refControl);
 			}
 	
 	
