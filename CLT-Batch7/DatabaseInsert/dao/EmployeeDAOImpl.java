@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Scanner;
 
 import dataBase.DBConnection2;
 import dataBase.MyConnection;
@@ -14,31 +15,35 @@ public class EmployeeDAOImpl implements EmployeeDAO
 	
 	Connection conRef;
 	PreparedStatement psRef;
-	
+	String password,dob;
+	int id;
 	void getConnection()
 	{
 		conRef = DBConnection2.myConnection();
 	}
 	
 	@Override
-	public void addEmp(Employee empRef)
+	public void addEmp(Employee empRef,Scanner s)
 	{	
 		
 		try 
 		{
-//			System.out.println("Enter ID : ");
-//			id = s.nextInt();
-//			empRef.setId(id);
+			System.out.println("Enter ID : ");
+			id = s.nextInt();
+			empRef.setId(id);
 			//s.next();
 			
-//			System.out.println("Enter Password : ");
-//			password = s.next();
-//			empRef.setPassword(password);
-//			
-//			System.out.println("Enter Date Of Birth : ");
-//			dob = s.next();
-//			empRef.setDob(dob);
+			System.out.println("Enter Password : ");
+			password = s.next();
+			empRef.setPassword(password);
+			
+			System.out.println("Enter Date Of Birth : ");
+			dob = s.next();
+			empRef.setDob(dob);
+			
 			getConnection();
+			
+			//String query = "insert into employee (id, password, dob) values (?,?,?)";
 			//MyConnection.prepareConnection(); // To Prepare Connection
 			psRef = conRef.prepareStatement("insert into employee (id, password, dob) values (?,?,?)");
 			psRef.setInt(1, empRef.getId()  );
@@ -61,14 +66,23 @@ public class EmployeeDAOImpl implements EmployeeDAO
 	} // End of Data Insert
 	
 	
-	public void updateEmp(Employee empRef) 
+	public void updateEmp(Employee empRef,Scanner s) 
 	{
 		try 
 		{
+			System.out.println("Enter ID : ");
+			id = s.nextInt();
+			empRef.setId(id);
+			//s.next();
+			
+			System.out.println("Enter Password : ");
+			password = s.next();
+			empRef.setPassword(password);
+			
+			
 		getConnection();
 		psRef = conRef.prepareStatement("update employee set password=? where id = ?");
 		psRef.setString(1,empRef.getPassword());
-//		psRef.setString(2, empRef.getDob());
 		psRef.setInt(2, empRef.getId()  );
 		
 		
@@ -86,15 +100,17 @@ public class EmployeeDAOImpl implements EmployeeDAO
 	} // end of update
 	
 	
-	public void retrieveData(Employee empRef) 
+	public void retrieveData(Employee empRef,Scanner s) 
 	{
 		try 
 		{
+			System.out.println("Enter ID : ");
+			id = s.nextInt();
+			empRef.setId(id);
+
 		MyConnection.prepareConnection();
 		psRef = conRef.prepareStatement("SELCT * FROM employee WHERE id = ?");
 		psRef.setInt(1,empRef.getId());
-//		psRef.setString(2,empRef.getPassword());
-//		psRef.setString(3, empRef.getDob());
 		int i = psRef.executeUpdate();
 		psRef.close();
 			
@@ -112,11 +128,13 @@ public class EmployeeDAOImpl implements EmployeeDAO
 	} // end of retrieve
 	
 	
-	public void delete(Employee empRef) 
+	public void delete(Employee empRef,Scanner s) 
 	{
 		try 
 		{
-		
+				System.out.println("Enter ID : ");
+				id = s.nextInt();
+				empRef.setId(id);
 				
 	        	getConnection();
 //	        	String sql = "DELETE FROM employee WHERE id = ?";
@@ -125,6 +143,8 @@ public class EmployeeDAOImpl implements EmployeeDAO
 	            psRef.setInt(1, empRef.getId());
 	            // execute the delete statement
 	            psRef.executeUpdate();
+	            
+	            System.out.println("Delete Successful!");
 	            
 	            
 	 
@@ -136,8 +156,7 @@ public class EmployeeDAOImpl implements EmployeeDAO
 		
 		
 		
-	} // end of retrieve
-	
+	} // end of delete
 	
 	
 	public List<Employee> getEmpList()
@@ -157,6 +176,8 @@ public class EmployeeDAOImpl implements EmployeeDAO
 		
 		return getEmpList();
 	}
+
+
 	
 	
 	

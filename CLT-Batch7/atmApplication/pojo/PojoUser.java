@@ -1,5 +1,10 @@
 package pojo;
 
+
+
+import java.sql.PreparedStatement;
+
+import atmDatabase.AtmDBConnection;
 import bankDAO.UserChoiceDAO;
 import bankDAO.UserChoiceDAOImpl;
 import bankServices.MessagePrintServices;
@@ -11,6 +16,9 @@ public class PojoUser
 	UserChoiceDAO refChoiceSvc = new UserChoiceDAOImpl();
 	private double bankAmount;
 	private String email,password,color;
+
+	
+
 	
 	public MessagePrintServices getRefMsg() {
 		return refMsg;

@@ -25,7 +25,7 @@ public class controller
 		
 		choice = s.nextInt();
 		
-		empRef.getRefSvc().option(empRef,choice);
+		empRef.getRefSvc().option(empRef,choice,s);
 		
 		
 	}

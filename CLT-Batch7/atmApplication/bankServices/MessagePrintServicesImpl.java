@@ -51,7 +51,7 @@ public class MessagePrintServicesImpl implements MessagePrintServices
 	
 
 	
-		public void wishToContinue(PojoUser userRef,Scanner s,Controller refControl)
+		public void message3(PojoUser userRef,Scanner s,Controller refControl)
 	{
 		String ans;
 		try 
@@ -71,7 +71,7 @@ public class MessagePrintServicesImpl implements MessagePrintServices
 			else
 			{
 				System.out.println("Wrong input! Try again");
-				userRef.getRefMsg().wishToContinue(userRef, s,refControl);
+				userRef.getRefMsg().message3(userRef, s,refControl);
 			}
 		
 				

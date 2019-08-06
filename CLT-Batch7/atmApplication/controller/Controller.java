@@ -8,7 +8,6 @@ public class Controller
 {
 	PojoUser userRef = new PojoUser();
 	Scanner s = new Scanner(System.in); //Passing the Scanner Object to lessen the heap memory
-	
 	public void adminController(Controller refControl)
 	{
 		int choice = 0;
@@ -35,6 +34,7 @@ public class Controller
 	
 	public void option(int choice,Controller refControl)
 	{
+		
 
 			try 
 			{ //This is where the user choice will determine what is next logic

@@ -1,11 +1,18 @@
 package bankDAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.Scanner;
+
+import atmDatabase.AtmDBConnection;
 import controller.Controller;
 import pojo.PojoUser;
 
 public class UserChoiceDAOImpl implements UserChoiceDAO 
 {
 	String email,password,color;
+	Connection conRef = AtmDBConnection.atmConnection();
+	PreparedStatement psRef;
 	//When user choice is number 1 this is the method that do the registeration
 	public void choiceOne(PojoUser userRef,Controller refControl,Scanner s) //Registeration Page
 	{
@@ -42,7 +49,6 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 				System.out.println("Password doesn't match!!");
 				System.out.println("Re-type Password : ");
 				tempPassword = s.next();
-				//PojoUser.setPassword(tempPassword);
 				userRef.setPassword(tempPassword);
 			}
 			while(!(tempPassword.equals(password)));
@@ -51,20 +57,43 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 		
 		else
 		{
-			//PojoUser.setPassword(tempPassword);
 			userRef.setPassword(tempPassword);
 		}
 		
 		System.out.println("What is your favourite color ? ");
 		color = s.next();
 		System.out.println(color+" is your security key, in case if you forget your password. ");
-		//PojoUser.setColor(color);
 		userRef.setColor(color);
 		
 		System.out.println(" ");
 		System.out.println("Registration Successful!!");
 		System.out.println("\n");
+		
+		//Connecting to Database
+
+		
+		//Putting data into Database
+		try 
+		{
+			psRef = conRef.prepareStatement("insert into userinfo VALUES (?, ? , ?)");
+			//String sql = "INSERT INTO userinfo" + "VALUES ('" + userRef.getEmail() + "', '" + userRef.getPassword() + "', '" + userRef.getColor()+ "')" ;
+//			userRef.getPsRef().equals(userRef.getConRef().prepareStatement());
+//			psRef = conRef.prepareStatement("insert into userinfo VALUES (?, ? , ?)");
+			//psRef = conRef.prepareStatement(sql);
+			psRef.setString(1,userRef.getEmail() );
+			psRef.setString(2,userRef.getPassword());
+			psRef.setString(3,userRef.getColor() );
+			psRef.executeUpdate();
+		}
+		catch(Exception e)
+		{
+			System.out.println("NULL");
+		}
+
+		
 		refControl.adminController(refControl);
+		
+		
 		
 	}
 
@@ -173,7 +202,7 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 			switch(choice)
 			{
 			case 1 : System.out.println("Available Balance  : $"+userRef.getBankAmount());
-	                 userRef.getRefMsg().wishToContinue(userRef,s,refControl);
+	                 userRef.getRefMsg().message3(userRef,s,refControl);
 	                 break;
 			case 2 : System.out.println("Enter Amount : ");
 					 temp = s.nextDouble();
@@ -189,7 +218,7 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 					 }
 						System.out.println("$"+temp+" dollars deposited successfully!!");
 						userRef.depositAmount(temp);
-						userRef.getRefMsg().wishToContinue(userRef,s,refControl);
+						userRef.getRefMsg().message3(userRef,s,refControl);
 						break;
 						
 			case 3 : System.out.println("Enter Amount : ");
@@ -207,19 +236,23 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 						else if(temp>userRef.getBankAmount())
 						{
 							System.out.println("Sorry!! insufficient balance\n");
-							userRef.getRefMsg().wishToContinue(userRef,s,refControl);
+							userRef.getRefMsg().message3(userRef,s,refControl);
 							
 						}
 						else
 						{
 							System.out.println("Transcation Successful!!");
 							userRef.withdrawAmount(temp);
-							userRef.getRefMsg().wishToContinue(userRef,s,refControl);
+							userRef.getRefMsg().message3(userRef,s,refControl);
 							break;
 						}
 						
 	}
 	}
+
+
+
+
 
 
 
