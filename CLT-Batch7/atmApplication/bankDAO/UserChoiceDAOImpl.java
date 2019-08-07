@@ -75,11 +75,8 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 		//Putting data into Database
 		try 
 		{
+			
 			psRef = conRef.prepareStatement("insert into userinfo VALUES (?, ? , ?)");
-			//String sql = "INSERT INTO userinfo" + "VALUES ('" + userRef.getEmail() + "', '" + userRef.getPassword() + "', '" + userRef.getColor()+ "')" ;
-//			userRef.getPsRef().equals(userRef.getConRef().prepareStatement());
-//			psRef = conRef.prepareStatement("insert into userinfo VALUES (?, ? , ?)");
-			//psRef = conRef.prepareStatement(sql);
 			psRef.setString(1,userRef.getEmail() );
 			psRef.setString(2,userRef.getPassword());
 			psRef.setString(3,userRef.getColor() );
