@@ -37,7 +37,7 @@ public class AtmDBConnection
 			System.out.println("DB Connection Error..");
 			
 		}
-		System.out.println("Connection success");
+		
 		return con;
 	}// end of myConnection()
 		

@@ -2,6 +2,10 @@ package bankDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import atmDatabase.AtmDBConnection;
@@ -13,6 +17,8 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 	String email,password,color;
 	Connection conRef = AtmDBConnection.atmConnection();
 	PreparedStatement psRef;
+	ResultSet rs;
+	List<PojoUser> refList = new ArrayList<PojoUser>();
 	//When user choice is number 1 this is the method that do the registeration
 	public void choiceOne(PojoUser userRef,Controller refControl,Scanner s) //Registeration Page
 	{
@@ -75,8 +81,9 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 		//Putting data into Database
 		try 
 		{
-			
-			psRef = conRef.prepareStatement("insert into userinfo VALUES (?, ? , ?)");
+			psRef = conRef.prepareStatement("call add_item(?,?,?)");
+			// Calling procedure from mySQL to input data into database
+			//psRef = conRef.prepareStatement("insert into userinfo VALUES (?, ? , ?)");
 			psRef.setString(1,userRef.getEmail() );
 			psRef.setString(2,userRef.getPassword());
 			psRef.setString(3,userRef.getColor() );
@@ -101,9 +108,12 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 	//Choice Two is for Login verification 
 	public void choiceTwo(PojoUser userRef, Controller refControl,Scanner s)
 	{
+		
 		int value=0;
 		System.out.println("Enter User ID : ");
 		email = s.next();
+		
+		
 	
 		if(!(email.equalsIgnoreCase(userRef.getEmail())))
 		{
@@ -245,6 +255,27 @@ public class UserChoiceDAOImpl implements UserChoiceDAO
 						}
 						
 	}
+			
+			
+	}
+	
+	
+	public void getUserInfo(String email)
+	{
+		try 
+		{
+			
+			rs = psRef.executeQuery();
+			while(rs.next())
+			{
+				PojoUser refList = new PojoUser(rs.getString(1),rs.getString(2),rs.getString(3));
+			}
+		} 
+		catch (SQLException e) 
+		{
+			
+			e.printStackTrace();
+		}
 	}
 
 

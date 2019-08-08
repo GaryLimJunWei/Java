@@ -20,6 +20,8 @@ public class PojoUser
 	
 
 	
+
+
 	public MessagePrintServices getRefMsg() {
 		return refMsg;
 	}
